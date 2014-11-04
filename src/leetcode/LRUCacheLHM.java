@@ -1,10 +1,19 @@
+/**
+ * @created Nov 2, 2014
+ * @author franklsf95
+ * 
+ * @problem lru-cache
+ * @difficulty hard
+ */
+
+package leetcode;
+
 import java.util.*;
 
-public class LRUCache extends LinkedHashMap<Integer, Integer> {
+public class LRUCacheLHM extends LinkedHashMap<Integer, Integer> {
+	private int capacity;
 
-    private int capacity;
-
-    public LRUCache(int capacity) {
+    public LRUCacheLHM(int capacity) {
         super(capacity, 0.75f, true);
         this.capacity = capacity;
     }
@@ -28,7 +37,7 @@ public class LRUCache extends LinkedHashMap<Integer, Integer> {
      }
 
     public static void main(String[] args) {
-        LRUCache c = new LRUCache(3);
+    	LRUCacheLHM c = new LRUCacheLHM(3);
         c.set(1, 10);
         c.set(2, 20);
         c.set(3, 30);
