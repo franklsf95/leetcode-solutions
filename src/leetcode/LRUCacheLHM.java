@@ -11,6 +11,8 @@ package leetcode;
 import java.util.*;
 
 public class LRUCacheLHM extends LinkedHashMap<Integer, Integer> {
+	private static final long serialVersionUID = 8390749530171925735L;
+	
 	private int capacity;
 
     public LRUCacheLHM(int capacity) {
