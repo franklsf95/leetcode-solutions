@@ -1,5 +1,6 @@
 /**
  * @created Nov 2, 2014
+ * @updated Sep 9, 2015
  * @author franklsf95
  * 
  * @problem lru-cache
@@ -10,103 +11,119 @@ package leetcode;
 
 import java.util.*;
 
+// The implementation of a LRUCache is Double-Linked List Nodes embedded
+// in a Hash Map. Nodes rearrange during a "get" operation.
+// Note: double-linked list is necessary to avoid Time Limit Exceeded Error
+
 public class LRUCache {
 	
-	private static final boolean DEBUG = true;
-	
-	class Node {
-		Node prev;
-		Node next;
+	private class Node {
 		int key;
 		int value;
-		Node(int k, int v) {
-			key = k;
-			value = v;
+		Node prev;
+		Node next;
+		
+		public String toString() {
+			return "(" + key + ", " + value + ")";
 		}
 	}
 	
-	private HashMap<Integer, Node> lookup;
+	private HashMap<Integer, Node> store;
+	private Node head;  // The first node, i.e. the least recently used one
+	private Node tail;  // The last node, i.e. the most recently used one
 	private int capacity;
-	private Node head;
-	private Node last;
+	
+	public LRUCache(int capacity) {
+		this.capacity = capacity;
+		store = new HashMap<Integer, Node>(capacity);
+	}
+	
+	public int get(int key) {
+		// Get node
+		Node node = store.get(key);
+		if (node == null) {
+			return -1;
+		}
+		// Rearrange nodes
+		moveToLast(node);
+		return node.value;
+	}
+	
+	public void set(int key, int value) {
+		// Get node
+		Node node = store.get(key);
+		if (node == null) {
+			// Add a node
+			node = createAndAppendNode(key, value);			
+			if (store.size() == capacity) {
+				// Remove the head node
+				store.remove(head.key);
+				head = head.next;
+			}
+			// Insert the node into hash map
+			store.put(key, node);
+		}
+		// Update node
+		node.value = value;
+		moveToLast(node);
+	}
+	
+	// Create a node and append it to the linked list
+	private Node createAndAppendNode(int key, int value) {
+		Node node = new Node();
+		node.key = key;
+		node.value = value;
+		
+		if (head == null) {
+			head = node;
+			tail = node;
+		} else {
+			tail.next = node;
+			node.prev = tail;
+		}
+		
+		return node;
+	}
+	
+	// Move the node to last, indicating most recent use
+	private void moveToLast(Node node) {
+//		System.err.println("Moving " + node + " to last");
+		
+		if (node == tail) {
+			// Already is last node
+			return;
+		}
+		
+//		System.err.println("Before---");
+//		printLinkedList();
 
-    public LRUCache(int c) {
-        lookup = new HashMap<Integer, Node>(c);
-        capacity = c;
-        head = null;
-        last = null;
-    }
-    
-    private void moveToLast(Node n) {
-    	if (n != last) {
-    		if (n == head) {
-        		head = n.next;
-        	}
-        	if (n.prev != null) {
-        		n.prev.next = n.next;
-        	}
-        	if (n.next != null) {
-        		n.next.prev = n.prev;
-        	}
-        	n.prev = last;
-        	n.next = null;
-        	if (last != null) {
-        		last.next = n;
-        	}
-        	last = n;
-    	}
-    }
-    
-    public int get(int key) {
-        if (DEBUG) print();
-    	Node n = lookup.get(key);
-    	if (n == null) {
-    		return -1;
-    	}
-    	moveToLast(n);
-    	return n.value;
-    }
-    
-    public void set(int key, int value) {
-    	if (DEBUG) print();
-    	Node existing = lookup.get(key);
-    	if (existing != null) {
-    		existing.value = value;
-    		moveToLast(existing);
-    		return;
-    	}
-        Node n = new Node(key, value);
-        if (last == null) {
-        	head = last = n;
-        } else {
-        	n.prev = last;
-        	last.next = n;
-        	last = n;
-        }
-        lookup.put(key, n);
-        if (DEBUG) System.out.printf("%d entered\n", key);
-        if (lookup.size() > capacity) {
-        	// drop first node
-        	if (head != null) {
-        		if (DEBUG) System.out.printf("%d evicted\n", head.key);
-        		if (head.next != null) {
-        			head.next.prev = null;
-        		}
-        		lookup.remove(head.key);
-        		head = head.next;
-        	} else {
-        		if (DEBUG) System.out.println("Nothing to evict");
-        	}
-        }
-    }
-    
-    public void print() {
+		if (node == head) {
+			// Change head (we guaranteed head != tail)
+			head = head.next;
+		}
+		if (node.prev != null) {
+			node.prev.next = node.next;
+		}
+		if (node.next != null) {
+			node.next.prev = node.prev;
+		}
+		node.prev = tail;
+		node.next = null;
+		tail.next = node;
+		tail = node;
+		
+//		System.err.println("After---");
+//		printLinkedList();
+	}
+	
+	private void printLinkedList() {
+		System.err.print("Linked List: ");
 		Node runner = head;
-		while (runner != null) {
-			System.out.printf("%d ", runner.key);
+		while (runner != null && runner.next != null) {
+			System.err.print(runner + " -> ");
 			runner = runner.next;
 		}
-		System.out.println();
+		System.err.println(runner);
 	}
     
 	public static void main(String[] args) {

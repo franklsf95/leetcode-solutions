@@ -10,6 +10,7 @@ package leetcode;
 
 import java.util.*;
 
+// An implementation using Java's Linked Hash Map
 public class LRUCacheLHM extends LinkedHashMap<Integer, Integer> {
 	private static final long serialVersionUID = 8390749530171925735L;
 	
