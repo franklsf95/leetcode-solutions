@@ -2,7 +2,7 @@
  * @created Sep 16, 2015
  * @author franklsf95
  * 
- * @problem anagrams
+ * @problem product-of-array-except-self
  * @difficulty medium
  */
 package leetcode;
