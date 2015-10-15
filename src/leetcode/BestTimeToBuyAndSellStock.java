@@ -7,11 +7,8 @@
  */
 package leetcode;
 
-import java.util.*;
-
 public class BestTimeToBuyAndSellStock {
 	
-	// f[i] denotes the max profit up until i-th day
 	static int maxProfit(int[] prices) {
         int min = Integer.MAX_VALUE;
         int maxProfit = 0;

@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class ClosestBinarySearchTreeValue {
 	
 	static class TreeNode {
@@ -21,7 +19,7 @@ public class ClosestBinarySearchTreeValue {
 	
 	static int closestValue(TreeNode root, double target) {
         double[] ans = {Double.MAX_VALUE, 0};
-        // [0] min diff; [1] min value
+        // [0] min diff; [1] node value with min diff
         closestValueHelper(root, target, ans);
         return (int)ans[1];
     }

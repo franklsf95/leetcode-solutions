@@ -12,6 +12,7 @@ import java.util.*;
 
 public class SearchInRotatedSortedArray {
 	
+	// Reference: http://fisherlei.blogspot.com/2013/01/leetcode-search-in-rotated-sorted-array.html
 	static int search(int[] nums, int target) {
         int lo = 0;
         int hi = nums.length - 1;
