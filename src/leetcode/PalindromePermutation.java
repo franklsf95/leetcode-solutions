@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class PalindromePermutation {
 	
 	static boolean canPermutePalindrome(String s) {

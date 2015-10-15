@@ -7,8 +7,6 @@
  */
 package leetcode;
 
-import java.util.*;
-
 public class PowXN {
 	
 	static double myPow(double x, int n) {

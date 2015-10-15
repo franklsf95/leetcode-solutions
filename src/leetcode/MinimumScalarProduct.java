@@ -80,5 +80,6 @@ public class MinimumScalarProduct {
 			String pattern = in.next();
 			System.out.printf("Case #%d: %d\n", i, solve(pattern));
 		}
+		in.close();
 	}
 }

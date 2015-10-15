@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class StringToInteger {
 	
 	static int myAtoi(String str) {

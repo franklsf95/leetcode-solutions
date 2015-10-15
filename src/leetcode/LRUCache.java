@@ -116,6 +116,7 @@ public class LRUCache {
 //		printLinkedList();
 	}
 	
+	@SuppressWarnings("unused")
 	private void printLinkedList() {
 		System.err.print("Linked List: ");
 		Node runner = head;

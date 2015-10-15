@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class H_Index {
 	
 	static boolean check(int[] citations, int h) {

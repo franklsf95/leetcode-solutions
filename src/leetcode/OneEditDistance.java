@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class OneEditDistance {
 	
 	static boolean isOneEditDistance(String s, String t) {

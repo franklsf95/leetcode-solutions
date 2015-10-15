@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class SearchInRotatedSortedArray {
 	
 	// Reference: http://fisherlei.blogspot.com/2013/01/leetcode-search-in-rotated-sorted-array.html

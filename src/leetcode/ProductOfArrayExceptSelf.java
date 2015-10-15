@@ -7,8 +7,6 @@
  */
 package leetcode;
 
-import java.util.*;
-
 public class ProductOfArrayExceptSelf {
 	
 	// f[i] = a[0] * a[1] * ... * a[i]

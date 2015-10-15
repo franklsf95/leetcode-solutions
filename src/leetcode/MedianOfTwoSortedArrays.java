@@ -8,8 +8,6 @@
 ////BUGGY
 package leetcode;
 
-import java.util.*;
-
 public class MedianOfTwoSortedArrays {
 	
 	// Find the kth element in the merged array of arr + brr

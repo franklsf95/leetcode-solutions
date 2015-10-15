@@ -1,6 +1,5 @@
 package leetcode;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
@@ -74,7 +73,7 @@ public class FileFix {
 			}
 			System.out.printf("Case #%d: %d\n", j, cnt);
 		}
-
+		in.close();
 	}
 
 }

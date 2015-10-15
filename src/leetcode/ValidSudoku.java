@@ -8,8 +8,6 @@
 
 package leetcode;
 
-import java.util.*;
-
 public class ValidSudoku {
 	
 	static boolean isValidSudoku(char[][] board) {
